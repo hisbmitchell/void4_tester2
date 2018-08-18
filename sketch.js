@@ -13,6 +13,7 @@ function setup() {
    
   video = createCapture(VIDEO);
   video.size(320, 240);
+  video.elt.setAttribute('playsinline', '');
   video.hide();
   video.id('p5video');
   
