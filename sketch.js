@@ -1,8 +1,11 @@
 var video;
+var  vaultText;
+var videoPlacementX; 
+var videoPlacementY;
 
 
 function setup() {
-   canvas = createCanvas(640, 480, WEBGL);
+   canvas = createCanvas(windowWidth, windowHeight);
   background('#e50000');
    canvas.id('p5canvas');
    
@@ -10,42 +13,50 @@ function setup() {
    
   // rectangle = rect(320, 240);
   // rectangle.id('rectangle');
-   
-  video = createCapture(VIDEO);
-  video.size(320, 240);
-  video.elt.setAttribute('playsinline', '');
-  video.hide();
-  video.id('p5video');
+  if (windowWidth > 1000) { 
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
+
+  }
   
+
+  videoPlacementX = windowWidth * 0.45; 
+  videoPlacementY = windowHeight * 0.25; 
   
-  var seriously = new Seriously();
-  
-  var src = seriously.source('#p5video');
-  var target = seriously.target('#p5canvas');
-  
-  var grain = seriously.effect('filmgrain');
-  grain.amount = 0.1;
-  
-  grain.source = src;
-  target.source = grain;
-  
-  seriously.go();
-  
-  canvas.size(320, 240);
+  textAlign(RIGHT, TOP);
+  textSize(32);
+  textStyle(BOLD);
+  text('VAULT', videoPlacementX - 30, videoPlacementY);
+  textStyle(NORMAL);
+  textSize(12);
+  text('this is the time and location etc', videoPlacementX - 30, videoPlacementY + 45);
+  text("here's some more info", videoPlacementX - 30, videoPlacementY + 65);
+  text('another info', videoPlacementX - 30, videoPlacementY + 85);
+  text('info info info', videoPlacementX - 30, videoPlacementY + 105);
    
    
 }
 
 function draw() {
-  canvas.position(windowWidth * 0.55, windowHeight * 0.3);
- // background('#bc0319');
-  //image(video, windowWidth * 0.5, windowHeight * 0.25, 320, 240);
+  //background('#e5000');
+  videoPlacementX = windowWidth * 0.5; 
+  videoPlacementY = windowHeight * 0.25; 
+ 
+ image(video, videoPlacementX , videoPlacementY, 320, 240);
+
   // //filter('INVERT');
     
   
 }
 
 function windowResized(){
-        canvas.position(windowWidth * 0.6, windowHeight * 0.4);
+        canvas = resizeCanvas(windowWidth, windowHeight);
+        text('VAULT',  videoPlacementX - 30, videoPlacementY);
+         textSize(12);
+        text('this is the time and location etc', videoPlacementX - 30, videoPlacementY + 35);
+        text("here's some more info", videoPlacementX - 30, videoPlacementY + 55);
+        text('another info', videoPlacementX - 30, videoPlacementY + 75);
+        text('info info info', videoPlacementX - 30, videoPlacementY + 95);
         //bgVideo.size(windowHeight*2, 300);
       }
