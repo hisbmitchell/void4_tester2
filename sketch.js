@@ -2,24 +2,32 @@ var video;
 var  vaultText;
 var videoPlacementX; 
 var videoPlacementY;
+var vidWidth;
+var vidHeight;
+
 
 
 function setup() {
    canvas = createCanvas(windowWidth, windowHeight);
   background('#e50000');
    canvas.id('p5canvas');
+  
    
    
    
   // rectangle = rect(320, 240);
   // rectangle.id('rectangle');
-  if (windowWidth > 1000) { 
+ 
     video = createCapture(VIDEO);
     video.size(320, 240);
     video.hide();
-
-  }
+    
+    
   
+  
+  vidWidth = video.width;
+  vidHeight = video.height;
+
 
   videoPlacementX = windowWidth * 0.45; 
   videoPlacementY = windowHeight * 0.35;
@@ -35,7 +43,7 @@ function setup() {
   text('Another info', videoPlacementX - 30, videoPlacementY + 85);
   text('Info info info', videoPlacementX - 30, videoPlacementY + 105);
  
-  text('there could also be some text here which could be nice', videoPlacementX + video.width, videoPlacementY + video.height + 10);
+  text('there could also be some text here which could be nice', videoPlacementX + vidWidth, videoPlacementY + vidHeight + 10);
    
 }
 
@@ -53,6 +61,7 @@ function draw() {
 
 function windowResized(){
         canvas = resizeCanvas(windowWidth, windowHeight);
+        
          textAlign(RIGHT, TOP);
   textSize(38);
   textStyle(BOLD);
@@ -63,4 +72,5 @@ function windowResized(){
   text("Here's some more info", videoPlacementX - 30, videoPlacementY + 65);
   text('Another info', videoPlacementX - 30, videoPlacementY + 85);
   text('Info info info', videoPlacementX - 30, videoPlacementY + 105);
-      }
+  text('there could also be some text here which could be nice', videoPlacementX + vidWidth, videoPlacementY + vidHeight + 10);
+}
